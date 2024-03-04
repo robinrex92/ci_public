@@ -1,0 +1,27 @@
+name: QA Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      approval_decision:
+        type: choice
+        description: 'QA status'
+        required: true
+        default: Reject
+        options:
+          - Approve
+          - Reject
+
+jobs:
+  process-decision:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check Approval Decision
+        run:
+          |
+          echo "Approval Decision: ${{ github.event.inputs.approval_decision }}"
+
+    # Add more steps as needed based on the approval decision
+    # ...
+
