@@ -1,0 +1,19 @@
+on:
+  repository_dispatch:
+    types:
+      - custom-event
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT }}
+          repository: robinrex92/ci_setup
+          event-type: my-event
+
+      # Add steps to make commits and push changes
+      # ...
